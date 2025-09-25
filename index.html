@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dispensary Rewards Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Rewards Dashboard</h1>
+      <p class="subtitle">Track, plan, and maximize your dispensary perks</p>
+    </header>
+
+    <main>
+      <section class="card-grid" id="dispensaryGrid"></section>
+    </main>
+
+    <template id="modalTemplate">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+          <button class="modal-close" aria-label="Close">&times;</button>
+          <div class="modal-header">
+            <img class="modal-logo" alt="" />
+            <div>
+              <h2 class="modal-title"></h2>
+              <p class="modal-subtitle"></p>
+            </div>
+          </div>
+
+          <section class="points-summary">
+            <h3>Current balance</h3>
+            <p class="points-value"></p>
+            <div class="tier-tags"></div>
+            <div class="location-links"></div>
+          </section>
+
+          <section class="action-section">
+            <h3>Add a purchase</h3>
+            <form class="purchase-form">
+              <div class="form-grid">
+                <label>
+                  <span>Purchase amount ($)</span>
+                  <input type="number" name="amount" min="0" step="0.01" required />
+                </label>
+                <label>
+                  <span>Date</span>
+                  <input type="date" name="date" required />
+                </label>
+                <label class="points-field">
+                  <span>Points to redeem</span>
+                  <div class="points-input">
+                    <input
+                      type="number"
+                      name="points"
+                      min="0"
+                      step="1"
+                      value="0"
+                    />
+                    <div class="point-buttons" aria-label="Quick point buttons"></div>
+                  </div>
+                </label>
+              </div>
+              <button type="submit" class="primary-btn">Save purchase</button>
+              <p class="form-helper"></p>
+            </form>
+          </section>
+
+          <section class="calculator">
+            <h3>Cost planner</h3>
+            <form class="calculator-form">
+              <div class="form-grid">
+                <label>
+                  <span>Planned purchase ($)</span>
+                  <input type="number" name="planAmount" min="0" step="0.01" required />
+                </label>
+                <label>
+                  <span>Points to apply</span>
+                  <input type="number" name="planPoints" min="0" step="1" value="0" />
+                </label>
+              </div>
+              <button type="submit" class="secondary-btn">Calculate</button>
+            </form>
+            <p class="calculator-result" role="status"></p>
+          </section>
+
+          <section class="history">
+            <h3>Recent activity</h3>
+            <div class="history-empty">No purchases yet.</div>
+            <ul class="history-list"></ul>
+          </section>
+        </div>
+      </div>
+    </template>
+
+    <div class="backdrop hidden" id="modalBackdrop"></div>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
